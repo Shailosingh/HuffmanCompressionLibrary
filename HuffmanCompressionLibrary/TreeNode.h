@@ -1,12 +1,12 @@
 #pragma once
 
-#include "GeneralStructures.h"
 #include "CharacterTable.h"
 
 class TreeNode
 {
 private:
-	CharInfo CharacterInfo;
+	unsigned char Character;
+	size_t Frequency;
 	TreeNode* Left;
 	TreeNode* Right;
 

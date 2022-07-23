@@ -1,4 +1,5 @@
 #pragma once
+
 #include "TreeNode.h"
 #include <list>
 
@@ -13,6 +14,11 @@ private:
 	/// </summary>
 	/// <param name="newNode">TreeNode pointer to be inserted</param>
 	void SortedInsert(TreeNode* newNode);
+
+	/// <summary>
+	/// Turns the priority queue into a huffman tree and sets the pointer to the  head of the tree to "HuffmanTree"
+	/// </summary>
+	void CreateTree();
 
 public:
 	//Public members-------------------------------------------------------------------------------------------------------------
