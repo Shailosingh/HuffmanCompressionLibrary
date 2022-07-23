@@ -14,6 +14,7 @@ public:
 	CharacterTable(std::string DecompressedFilePath);
 
 	//Operator overloads---------------------------------------------------------------------------------------------------------
+	CharacterTableNode operator[](unsigned char key) const;
 	CharacterTableNode& operator[](unsigned char key);
 
 };
