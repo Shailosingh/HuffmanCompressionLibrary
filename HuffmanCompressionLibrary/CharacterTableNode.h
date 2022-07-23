@@ -12,7 +12,7 @@ public:
 	std::vector<bool> BitRepresentation;
 
 	//Constructors---------------------------------------------------------------------------------------------------------------
-	CharacterTableNode(unsigned char newChar);
+	CharacterTableNode();
 
 	//Operator overloads---------------------------------------------------------------------------------------------------------
 	/// <summary>
