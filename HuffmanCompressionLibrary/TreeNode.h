@@ -10,10 +10,13 @@ private:
 	TreeNode* Left;
 	TreeNode* Right;
 
+	//Private functions----------------------------------------------------------------------------------------------------------
+	void RetrieveBinaryCodes_Aux(CharacterTable& table, std::vector<bool> currentBits) const;
+
 public:
 	//Constructors and Deconstructors--------------------------------------------------------------------------------------------
-	TreeNode(unsigned char Character, size_t Frequency);
-	TreeNode(TreeNode* LeftNode, TreeNode* RightNode);
+	TreeNode(unsigned char newChar, size_t newFreq);
+	TreeNode(TreeNode* leftNode, TreeNode* rightNode);
 	~TreeNode();
 
 	//Public functions-----------------------------------------------------------------------------------------------------------

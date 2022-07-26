@@ -24,3 +24,14 @@ CharacterTable::CharacterTable(std::string DecompressedFilePath)
 	//Close up the file stream
 	fileReader.close();
 }
+
+//Operator overloads---------------------------------------------------------------------------------------------------------
+CharacterTableNode CharacterTable::operator[](unsigned char key) const
+{
+	return CharacterMap.at(key);
+}
+
+CharacterTableNode& CharacterTable::operator[](unsigned char key)
+{
+	return CharacterMap.at(key);
+}

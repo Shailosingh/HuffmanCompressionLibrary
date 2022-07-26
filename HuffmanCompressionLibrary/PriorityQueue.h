@@ -1,5 +1,5 @@
 #pragma once
-
+//Remember to have an special case for when there is only one unique char
 #include "TreeNode.h"
 #include <list>
 
