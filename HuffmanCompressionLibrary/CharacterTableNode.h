@@ -15,6 +15,7 @@ public:
 	CharacterTableNode();
 
 	//Operator overloads---------------------------------------------------------------------------------------------------------
+	
 	/// <summary>
 	/// Increments the frequency of the the character
 	/// </summary>

@@ -20,9 +20,13 @@ public:
 	~TreeNode();
 
 	//Public functions-----------------------------------------------------------------------------------------------------------
+	
 	/// <summary>
 	/// Gets the binary code for each character and inserts it into the table.
 	/// </summary>
 	/// <param name="table">Table that carries each character, frequency and binary representation</param>
 	void RetrieveBinaryCodes(CharacterTable& table) const;
+
+	//Operator overloads---------------------------------------------------------------------------------------------------------
+	bool operator<(TreeNode other);
 };

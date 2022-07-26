@@ -76,3 +76,9 @@ void TreeNode::RetrieveBinaryCodes_Aux(CharacterTable& table, std::vector<bool> 
 		Right->RetrieveBinaryCodes_Aux(table, rightBitRep);
 	}
 }
+
+//Operator overloads---------------------------------------------------------------------------------------------------------
+bool TreeNode::operator<(TreeNode other)
+{
+	return (this->Frequency < other.Frequency);
+}

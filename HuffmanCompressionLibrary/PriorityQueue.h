@@ -9,6 +9,7 @@ private:
 	std::list<TreeNode*> Queue;
 
 	//Private functions----------------------------------------------------------------------------------------------------------
+	
 	/// <summary>
 	/// Inserts the new node and maintains the least frequency to greatest frequency order of the queue.
 	/// </summary>
