@@ -17,6 +17,7 @@ public:
 	//Constructors and Deconstructors--------------------------------------------------------------------------------------------
 	TreeNode(unsigned char newChar, size_t newFreq);
 	TreeNode(TreeNode* leftNode, TreeNode* rightNode);
+	TreeNode(TreeNode* loneNodeException);
 	~TreeNode();
 
 	//Public functions-----------------------------------------------------------------------------------------------------------
@@ -28,5 +29,5 @@ public:
 	void RetrieveBinaryCodes(CharacterTable& table) const;
 
 	//Operator overloads---------------------------------------------------------------------------------------------------------
-	bool operator<(TreeNode other);
+	bool operator<(TreeNode other) const;
 };

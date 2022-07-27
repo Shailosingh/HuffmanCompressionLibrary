@@ -17,6 +17,14 @@ TreeNode::TreeNode(TreeNode* leftNode, TreeNode* rightNode)
 	Right = rightNode;
 }
 
+TreeNode::TreeNode(TreeNode* loneNodeException)
+{
+	Character = NULL;
+	Frequency = loneNodeException->Frequency;
+	Left = nullptr;
+	Right = loneNodeException;
+}
+
 TreeNode::~TreeNode()
 {
 	//Clear values
@@ -78,7 +86,7 @@ void TreeNode::RetrieveBinaryCodes_Aux(CharacterTable& table, std::vector<bool> 
 }
 
 //Operator overloads---------------------------------------------------------------------------------------------------------
-bool TreeNode::operator<(TreeNode other)
+bool TreeNode::operator<(TreeNode other) const
 {
 	return (this->Frequency < other.Frequency);
 }

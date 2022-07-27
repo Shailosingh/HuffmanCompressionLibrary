@@ -15,16 +15,14 @@ private:
 	/// </summary>
 	/// <param name="newNode">TreeNode pointer to be inserted</param>
 	void SortedInsert(TreeNode* newNode);
-
+	
 	/// <summary>
 	/// Turns the priority queue into a huffman tree and sets the pointer to the  head of the tree to "HuffmanTree"
 	/// </summary>
-	void CreateTree();
+	/// <returns>Pointer to the head of the huffman tree</returns>
+	TreeNode* CreateTree();
 
 public:
-	//Public members-------------------------------------------------------------------------------------------------------------
-	TreeNode* HuffmanTree;
-
 	//Constructors---------------------------------------------------------------------------------------------------------------
 	PriorityQueue(CharacterTable& table);
 };
