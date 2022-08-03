@@ -2,16 +2,16 @@
 #include <fstream>
 
 //Constructors---------------------------------------------------------------------------------------------------------------
-CharacterTable::CharacterTable(std::string DecompressedFilePath)
+CharacterTable::CharacterTable(std::string decompressedFilePath)
 {
 	//Open file for reading binary
 	std::ifstream fileReader;
-	fileReader.open(DecompressedFilePath);
+	fileReader.open(decompressedFilePath, std::ios::binary);
 
 	//If file unable to open, throw an error
 	if (!fileReader)
 	{
-		throw std::invalid_argument("Unable to open " + DecompressedFilePath);
+		throw std::invalid_argument("Unable to open input file to be compressed\n");
 	}
 
 	//Read every byte of the file and record their frequencies in the map
@@ -23,6 +23,11 @@ CharacterTable::CharacterTable(std::string DecompressedFilePath)
 
 	//Close up the file stream
 	fileReader.close();
+}
+
+CharacterTable::CharacterTable()
+{
+	//Does nothing
 }
 
 //Operator overloads---------------------------------------------------------------------------------------------------------

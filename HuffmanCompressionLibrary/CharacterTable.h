@@ -10,7 +10,8 @@ public:
 	std::unordered_map<unsigned char, CharacterTableNode> CharacterMap;
 
 	//Constructors---------------------------------------------------------------------------------------------------------------
-	CharacterTable(std::string DecompressedFilePath);
+	CharacterTable(); //Creates a literally empty table.
+	CharacterTable(std::string decompressedFilePath);
 
 	//Operator overloads---------------------------------------------------------------------------------------------------------
 	CharacterTableNode operator[](unsigned char key) const;

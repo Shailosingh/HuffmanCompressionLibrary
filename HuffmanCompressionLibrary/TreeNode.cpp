@@ -1,7 +1,7 @@
 #include "TreeNode.h"
 
 //Constructors and Deconstructors--------------------------------------------------------------------------------------------
-TreeNode::TreeNode(unsigned char newChar, size_t newFreq)
+TreeNode::TreeNode(unsigned char newChar, uint64_t newFreq)
 {
 	Character = newChar;
 	Frequency = newFreq;
@@ -86,7 +86,7 @@ void TreeNode::RetrieveBinaryCodes_Aux(CharacterTable& table, std::vector<bool> 
 }
 
 //Operator overloads---------------------------------------------------------------------------------------------------------
-bool TreeNode::operator<(TreeNode other) const
+bool TreeNode::operator<(const TreeNode& other) const
 {
-	return (this->Frequency < other.Frequency);
+	return ((this->Frequency) < (other.Frequency));
 }

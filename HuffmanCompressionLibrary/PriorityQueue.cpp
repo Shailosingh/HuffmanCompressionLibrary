@@ -62,6 +62,7 @@ TreeNode* PriorityQueue::CreateTree()
 		leftNode = Queue.front();
 		Queue.pop_front();
 		rightNode = Queue.front();
+		Queue.pop_front();
 		combinedNode = new TreeNode(leftNode, rightNode);
 		SortedInsert(combinedNode);
 	}

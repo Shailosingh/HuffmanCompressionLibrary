@@ -5,7 +5,7 @@
 class CharacterTableNode
 {
 private:
-	size_t Frequency;
+	uint64_t Frequency;
 
 public:
 	//Public members-------------------------------------------------------------------------------------------------------------
@@ -23,5 +23,5 @@ public:
 	void operator++(int incrementAmount);
 
 	//Public functions-----------------------------------------------------------------------------------------------------------
-	size_t GetFrequency() const;
+	uint64_t GetFrequency() const;
 };

@@ -6,7 +6,7 @@ class TreeNode
 {
 private:
 	unsigned char Character;
-	size_t Frequency;
+	uint64_t Frequency;
 	TreeNode* Left;
 	TreeNode* Right;
 
@@ -15,7 +15,7 @@ private:
 
 public:
 	//Constructors and Deconstructors--------------------------------------------------------------------------------------------
-	TreeNode(unsigned char newChar, size_t newFreq);
+	TreeNode(unsigned char newChar, uint64_t newFreq);
 	TreeNode(TreeNode* leftNode, TreeNode* rightNode);
 	TreeNode(TreeNode* loneNodeException);
 	~TreeNode();
@@ -29,5 +29,5 @@ public:
 	void RetrieveBinaryCodes(CharacterTable& table) const;
 
 	//Operator overloads---------------------------------------------------------------------------------------------------------
-	bool operator<(TreeNode other) const;
+	bool operator<(const TreeNode& other) const;
 };

@@ -9,11 +9,19 @@ CharacterTableNode::CharacterTableNode()
 //Operator overloads---------------------------------------------------------------------------------------------------------
 void CharacterTableNode::operator++(int incrementAmount)
 {
-	Frequency += incrementAmount;
+	if (incrementAmount == 0)
+	{
+		Frequency++;
+	}
+
+	else
+	{
+		Frequency += incrementAmount;
+	}
 }
 
 //Public functions-----------------------------------------------------------------------------------------------------------
-size_t CharacterTableNode::GetFrequency() const
+uint64_t CharacterTableNode::GetFrequency() const
 {
 	return Frequency;
 }

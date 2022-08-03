@@ -131,6 +131,7 @@
     <ClCompile Include="CharacterTable.cpp" />
     <ClCompile Include="CharacterTableNode.cpp" />
     <ClCompile Include="HuffmanCompressionLibrary.cpp" />
+    <ClCompile Include="HuffmanCompressor.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
     <ClCompile Include="TreeNode.cpp" />
   </ItemGroup>
