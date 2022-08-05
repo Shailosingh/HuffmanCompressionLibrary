@@ -50,7 +50,7 @@
     <ClInclude Include="CharacterTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneralStructures.h">
+    <ClInclude Include="GeneralConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CharacterTableNode.h">

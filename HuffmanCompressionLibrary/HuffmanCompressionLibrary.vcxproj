@@ -138,7 +138,7 @@
   <ItemGroup>
     <ClInclude Include="CharacterTable.h" />
     <ClInclude Include="CharacterTableNode.h" />
-    <ClInclude Include="GeneralStructures.h" />
+    <ClInclude Include="GeneralConstants.h" />
     <ClInclude Include="HuffmanCompressor.h" />
     <ClInclude Include="HuffmanDecompressor.h" />
     <ClInclude Include="PriorityQueue.h" />

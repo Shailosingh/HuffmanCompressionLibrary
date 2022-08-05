@@ -1,5 +1,5 @@
 #include "HuffmanCompressor.h"
-#include "GeneralStructures.h";
+#include "GeneralConstants.h";
 #include <fstream>;
 #include <filesystem>
 namespace fs = std::filesystem;

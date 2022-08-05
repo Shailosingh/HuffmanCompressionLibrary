@@ -9,7 +9,7 @@ void ManageCompressionProcess(std::string inputFilePath, std::string outputFolde
 int main()
 {
     //Initialize paths
-    std::string inputFilePath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Decompressed\\miserables.txt";
+    std::string inputFilePath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Original\\miserables.txt";
     std::string outputFolderPath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Compressed";
 
     //Spin up thread that will manage compression and its status
