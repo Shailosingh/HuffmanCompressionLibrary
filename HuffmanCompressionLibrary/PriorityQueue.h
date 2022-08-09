@@ -23,6 +23,9 @@ private:
 	TreeNode* CreateTree();
 
 public:
-	//Constructors---------------------------------------------------------------------------------------------------------------
-	PriorityQueue(CharacterTable& table);
+	TreeNode* HuffmanTree;
+
+	//Constructors and Destructors-----------------------------------------------------------------------------------------------
+	PriorityQueue(CharacterTable& table, bool doRetrieveBinaryCode);
+	~PriorityQueue();
 };

@@ -1,7 +1,7 @@
 #include "PriorityQueue.h"
 
-//Constructors---------------------------------------------------------------------------------------------------------------
-PriorityQueue::PriorityQueue(CharacterTable& table)
+//Constructors and Destructors-----------------------------------------------------------------------------------------------
+PriorityQueue::PriorityQueue(CharacterTable& table, bool doRetrieveBinaryCode)
 {
 	//Iterate through the CharacterTable's map and insert its elements into the PriorityQueue
 	TreeNode* newlyCreatedNode;
@@ -12,16 +12,23 @@ PriorityQueue::PriorityQueue(CharacterTable& table)
 	}
 
 	//Perform the huffman process on the queue to create the huffman tree
-	TreeNode* huffmanTree = CreateTree();
+	HuffmanTree = CreateTree();
 
-	//Get the binary code from each character and place it into table
-	huffmanTree->RetrieveBinaryCodes(table);
-
-	//After the binary codes are retrieved, free the entire tree
-	delete huffmanTree;
+	//Get the binary code (if user wants) from each character and place it into table
+	if (doRetrieveBinaryCode)
+	{
+		HuffmanTree->RetrieveBinaryCodes(table);
+	}
 
 	//Clear out the priority queue
 	Queue.clear();
+}
+
+PriorityQueue::~PriorityQueue()
+{
+	//Clean out the huffman tree before the priority queue is destroyed
+	delete HuffmanTree;
+	HuffmanTree = nullptr;
 }
 
 //Private functions----------------------------------------------------------------------------------------------------------

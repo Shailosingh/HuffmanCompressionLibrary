@@ -1,4 +1,5 @@
 #include "TreeNode.h"
+#include <fstream>
 
 //Constructors and Deconstructors--------------------------------------------------------------------------------------------
 TreeNode::TreeNode(unsigned char newChar, uint64_t newFreq)
@@ -58,6 +59,73 @@ void TreeNode::RetrieveBinaryCodes(CharacterTable& table) const
 		Right->RetrieveBinaryCodes_Aux(table, rightBitRep);
 	}
 }
+
+bool TreeNode::WriteDecompressedFile(std::ifstream& fileReader, std::ofstream& outputWriter, uint64_t totalBits)
+{
+	//Go through every bit in the huffman coding and interpret which characters to print into the decompressed file
+	unsigned char currentOutputByte;
+	uint64_t remainingBitCounter = totalBits;
+	int bitEndCounter = CHAR_BIT;
+	unsigned char currentByte;
+	TreeNode* currentNode = this;
+
+	while (fileReader >> currentByte)
+	{
+		//If there is less than a full byte of bits left, ensure it only reads that many bits
+		if (remainingBitCounter < CHAR_BIT)
+		{
+			bitEndCounter = remainingBitCounter;
+		}
+
+		remainingBitCounter -= bitEndCounter;
+
+		for (int currentBit = 0; currentBit < bitEndCounter; currentBit++)
+		{
+			//If current bit leads down the left branch
+			if ((currentByte & (1 << currentBit)) == 0)
+			{
+				if (currentNode->Left == nullptr)
+				{
+					return false;
+				}
+				
+				currentNode = currentNode->Left;
+			}
+
+			//If current bit leads down the right branch
+			//NOTE: I made this a simple "else" statement instead of a deliberate  "else if" because, it is simpler and there isn't an easy way to scan for bits being 1 without just checking if it is not 0.
+			else
+			{
+				if (currentNode->Right == nullptr)
+				{
+					return false;
+				}
+
+				currentNode = currentNode->Right;
+			}
+
+			//Tree node has no children
+			if (currentNode->Left == nullptr && currentNode->Right == nullptr)
+			{
+				currentOutputByte = currentNode->Character;
+				outputWriter.write(reinterpret_cast<char*>(&currentOutputByte), sizeof(unsigned char));
+
+				//Reset currentNode to the root of the tree
+				currentNode = this;
+			}
+		}
+
+		if (remainingBitCounter == 0)
+		{
+			break;
+		}
+
+	}
+
+	//If it got this far, everything must be good
+	return true;
+}
+
 
 //Private functions----------------------------------------------------------------------------------------------------------
 void TreeNode::RetrieveBinaryCodes_Aux(CharacterTable& table, std::vector<bool> currentBits) const

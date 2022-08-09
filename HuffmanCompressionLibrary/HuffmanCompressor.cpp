@@ -1,6 +1,6 @@
 #include "HuffmanCompressor.h"
-#include "GeneralConstants.h";
-#include <fstream>;
+#include "GeneralConstants.h"
+#include <fstream>
 #include <filesystem>
 namespace fs = std::filesystem;
 
@@ -65,7 +65,7 @@ void HuffmanCompressor::BeginCompression(std::string inputFilePath, std::string 
 	CharacterTableFinished = true;
 
 	//Load the compressed binary codes into the character table, using PQ and huffman tree
-	PriorityQueue pq = PriorityQueue(table);
+	PriorityQueue pq = PriorityQueue(table, true);
 	BinaryCodesFound = true;
 
 	//Finally, create and build the compressed file
@@ -122,8 +122,8 @@ void HuffmanCompressor::WriteCompressedFile(CharacterTable& table, std::string i
 
 	//Record the input file's extension and its size
 	std::string inputFileExtension = inputFileName.extension().string();
-	uint64_t cStringExtensionSize = inputFileExtension.length()+1;
-	outputWriter.write(reinterpret_cast<char*>(&cStringExtensionSize), sizeof(uint64_t));
+	uint16_t cStringExtensionSize = inputFileExtension.length()+1; //Uses 16 bits, since the extension can't have more than 256 (including null) because of filename length restrictions
+	outputWriter.write(reinterpret_cast<char*>(&cStringExtensionSize), sizeof(uint16_t));
 
 	const char* cStringExtension = inputFileExtension.c_str();
 	outputWriter.write(cStringExtension, cStringExtensionSize);
@@ -147,9 +147,13 @@ void HuffmanCompressor::WriteCompressedFile(CharacterTable& table, std::string i
 		totalBitsCount += table[key].BitRepresentation.size() * table[key].GetFrequency();
 	}
 
+	//Record the total number of bits in the upcoming huffman coding
+	outputWriter.write(reinterpret_cast<const char*>(&totalBitsCount), sizeof(uint64_t));
+
 	//Open up the input file to read bytes
 	std::ifstream fileReader;
 	fileReader.open(inputFilePath, std::ios::binary);
+	fileReader >> std::noskipws;
 	if (!fileReader)
 	{
 		throw std::invalid_argument("Unable to open input file to be compressed\n");
@@ -157,7 +161,7 @@ void HuffmanCompressor::WriteCompressedFile(CharacterTable& table, std::string i
 
 	//Go through every character in the input file and write their compressed binary codes to the output
 	unsigned char currentOutputByte = 0;
-	int bitCounter = 0;
+	uint64_t bitCounter = 0;
 	unsigned char currentByte;
 	while (fileReader >> currentByte)
 	{

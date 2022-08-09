@@ -6,6 +6,11 @@ CharacterTableNode::CharacterTableNode()
 	Frequency = 0;
 }
 
+CharacterTableNode::CharacterTableNode(uint64_t freq)
+{
+	Frequency = freq;
+}
+
 //Operator overloads---------------------------------------------------------------------------------------------------------
 void CharacterTableNode::operator++(int incrementAmount)
 {
