@@ -11,7 +11,7 @@ void ManageDecompressionProcess(std::string inputFilePath, std::string outputFol
 int main()
 {
     //Initialize paths for compression
-    std::string compression_InputFilePath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Original\\miserables.txt";
+    std::string compression_InputFilePath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Original\\Japanese.txt";
     std::string compression_OutputFolderPath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Compressed";
 
     //Spin up thread that will manage compression and its status
@@ -20,7 +20,7 @@ int main()
     std::cout << "Compression Complete!\n\n";
 
     //Initialize paths for decompression
-    std::string decompression_InputFilePath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Compressed\\miserables.ShailoHuff64";
+    std::string decompression_InputFilePath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Compressed\\Japanese.ShailoHuff64";
     std::string decompression_OutputFolderPath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Decompressed";
 
     //Spin up thread that will manage decompression and its status

@@ -69,7 +69,7 @@ bool TreeNode::WriteDecompressedFile(std::ifstream& fileReader, std::ofstream& o
 	unsigned char currentByte;
 	TreeNode* currentNode = this;
 
-	while (fileReader >> currentByte)
+	while (fileReader.read(reinterpret_cast<char*>(&currentByte), sizeof(unsigned char)))
 	{
 		//If there is less than a full byte of bits left, ensure it only reads that many bits
 		if (remainingBitCounter < CHAR_BIT)

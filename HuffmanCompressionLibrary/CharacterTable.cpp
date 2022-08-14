@@ -17,7 +17,7 @@ CharacterTable::CharacterTable(std::string decompressedFilePath)
 
 	//Read every byte of the file and record their frequencies in the map
 	unsigned char currentByte;
-	while (fileReader >> currentByte)
+	while (fileReader.read(reinterpret_cast<char*>(&currentByte), sizeof(unsigned char)))
 	{
 		CharacterMap[currentByte]++;
 	}

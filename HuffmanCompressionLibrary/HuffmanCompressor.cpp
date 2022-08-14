@@ -163,7 +163,7 @@ void HuffmanCompressor::WriteCompressedFile(CharacterTable& table, std::string i
 	unsigned char currentOutputByte = 0;
 	uint64_t bitCounter = 0;
 	unsigned char currentByte;
-	while (fileReader >> currentByte)
+	while (fileReader.read(reinterpret_cast<char*>(&currentByte), sizeof(unsigned char)))
 	{
 		for (bool bit : table[currentByte].BitRepresentation)
 		{
