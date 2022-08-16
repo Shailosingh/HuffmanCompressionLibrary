@@ -1,13 +1,13 @@
 #pragma once
 
 #include "CharacterTableNode.h"
-#include <unordered_map>
+#include <map> //NEVER CHANGE THIS TO "unordered_map." It won't work because the CharacterTable order needs to be the exact same during compression and decompression, for the huffman trees to be identical.
 #include <string>
 
 class CharacterTable
 {
 public:
-	std::unordered_map<unsigned char, CharacterTableNode> CharacterMap;
+	std::map<unsigned char, CharacterTableNode> CharacterMap;
 
 	//Constructors---------------------------------------------------------------------------------------------------------------
 	//Creates a literally empty table.

@@ -74,6 +74,7 @@ bool TreeNode::WriteDecompressedFile(std::ifstream& fileReader, std::ofstream& o
 		//If there is less than a full byte of bits left, ensure it only reads that many bits
 		if (remainingBitCounter < CHAR_BIT)
 		{
+			//This causes a warning about converting "uint64_t" to "int". This is not a concern because, there is no way any computer will have more bits in a byte than an int's worth
 			bitEndCounter = remainingBitCounter;
 		}
 

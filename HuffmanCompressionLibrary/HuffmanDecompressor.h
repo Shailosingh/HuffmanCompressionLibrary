@@ -8,8 +8,6 @@ namespace fs = std::filesystem;
 class HuffmanDecompressor
 {
 private:
-	//Private functions----------------------------------------------------------------------------------------------------------
-
 	/// <summary>
 	/// Uses the fileReader handle to get the size of and then actual
 	/// extension of the soon to be decompressed file.
@@ -40,7 +38,6 @@ private:
 	void SetupErrorMessage(std::string errorMessage);
 
 public:
-	//Public members-------------------------------------------------------------------------------------------------------------
 	bool FileAndDirectoryValidated;
 	bool RecordedFileExtension;
 	bool CharacterTableFinished;
@@ -49,9 +46,7 @@ public:
 	bool ExitError;
 	std::string StatusMessage;
 
-	//Constructors---------------------------------------------------------------------------------------------------------------
 	HuffmanDecompressor();
 
-	//Public functions-----------------------------------------------------------------------------------------------------------
 	void BeginDecompression(std::string inputFilePath, std::string outputFolderPath);
 };
