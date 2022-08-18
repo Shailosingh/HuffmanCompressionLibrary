@@ -46,7 +46,15 @@ public:
 	bool ExitError;
 	std::string StatusMessage;
 
+	/// <summary>
+	/// Constructor for decompressor. Will get the object ready to start compression process
+	/// </summary>
 	HuffmanDecompressor();
 
+	/// <summary>
+	/// Decompresses file pointed to by the inputFilePath and puts the compressed file in the outputFolderPath
+	/// </summary>
+	/// <param name="inputFilePath">Path to file to be decompressed</param>
+	/// <param name="outputFolderPath">Path to folder where decompressed file shall be placed</param>
 	void BeginDecompression(std::string inputFilePath, std::string outputFolderPath);
 };

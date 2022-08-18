@@ -10,7 +10,15 @@ private:
 public:
 	std::vector<bool> BitRepresentation;
 
+	/// <summary>
+	/// Creates a default node with 0 frequency and no BitRepresentation
+	/// </summary>
 	CharacterTableNode();
+
+	/// <summary>
+	/// Creates node with set frequency and no bit representation
+	/// </summary>
+	/// <param name="frequency">Frequency value to be set to node</param>
 	CharacterTableNode(uint64_t frequency);
 
 	/// <summary>

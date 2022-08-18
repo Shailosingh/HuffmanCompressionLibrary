@@ -9,17 +9,24 @@ class CharacterTable
 public:
 	std::map<unsigned char, CharacterTableNode> CharacterMap;
 
-	//Constructors---------------------------------------------------------------------------------------------------------------
-	//Creates a literally empty table.
+	/// <summary>
+	/// Creates a literally empty table
+	/// </summary>
 	CharacterTable(); 
 
-	//Creates character table out of file to be compressed
+	/// <summary>
+	/// Creates character table out of file to be compressed
+	/// </summary>
+	/// <param name="decompressedFilePath">Uncompressed file</param>
 	CharacterTable(std::string decompressedFilePath); 
 
-	//Creates character table out of file being decompressed
+	/// <summary>
+	/// Creates character table out of file being decompressed
+	/// </summary>
+	/// <param name="compressedFileReader">Compressed file</param>
 	CharacterTable(std::ifstream& compressedFileReader);
 
-	//Operator overloads---------------------------------------------------------------------------------------------------------
+	//Operator overloads to get and set CharacterMap values in a safer way (using "at")
 	CharacterTableNode operator[](unsigned char key) const;
 	CharacterTableNode& operator[](unsigned char key);
 };

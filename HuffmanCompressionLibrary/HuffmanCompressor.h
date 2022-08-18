@@ -6,8 +6,6 @@
 class HuffmanCompressor
 {
 private:
-	//Private functions----------------------------------------------------------------------------------------------------------
-	
 	/// <summary>
 	/// Resets all members (status indicators) to default settings
 	/// </summary>
@@ -28,7 +26,6 @@ private:
 	void WriteCompressedFile(CharacterTable& table, std::string inputFilePath, std::string outputFolderPath);
 
 public:
-	//Public members-------------------------------------------------------------------------------------------------------------
 	bool FileAndDirectoryValidated;
 	bool CharacterTableFinished;
 	bool BinaryCodesFound;
@@ -36,9 +33,15 @@ public:
 	bool ExitError;
 	std::string StatusMessage;
 
-	//Constructors---------------------------------------------------------------------------------------------------------------
+	/// <summary>
+	/// Constructor for the compressor. Will get the object ready to start compression process
+	/// </summary>
 	HuffmanCompressor();
 
-	//Public functions-----------------------------------------------------------------------------------------------------------
+	/// <summary>
+	/// Compresses file pointed to by the inputFilePath and puts the compressed file in the outputFolderPath
+	/// </summary>
+	/// <param name="inputFilePath">Path to file to be compressed</param>
+	/// <param name="outputFolderPath">Path to folder where compressed file shall be placed</param>
 	void BeginCompression(std::string inputFilePath, std::string outputFolderPath);
 };

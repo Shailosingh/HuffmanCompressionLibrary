@@ -1,5 +1,4 @@
 #pragma once
-//Remember to have an special case for when there is only one unique char
 #include "TreeNode.h"
 #include <list>
 
@@ -8,8 +7,6 @@ class PriorityQueue
 private:
 	std::list<TreeNode*> Queue;
 
-	//Private functions----------------------------------------------------------------------------------------------------------
-	
 	/// <summary>
 	/// Inserts the new node and maintains the least frequency to greatest frequency order of the queue.
 	/// </summary>
@@ -25,7 +22,15 @@ private:
 public:
 	TreeNode* HuffmanTree;
 
-	//Constructors and Destructors-----------------------------------------------------------------------------------------------
+	/// <summary>
+	/// Constructor uses character table to create a priority queue which will then be morphed into a huffman tree.
+	/// </summary>
+	/// <param name="table">Reference to character table with unique characters and its frequencies and binary representation</param>
+	/// <param name="doRetrieveBinaryCode">If this is true, it will fill the table with huffman binary codes</param>
 	PriorityQueue(CharacterTable& table, bool doRetrieveBinaryCode);
+
+	/// <summary>
+	/// Deconstructor which will destruct its associated huffman tree
+	/// </summary>
 	~PriorityQueue();
 };
