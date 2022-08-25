@@ -66,7 +66,12 @@ void ManageCompressionProcess(std::string inputFilePath, std::string outputFolde
     }
 
     std::cout << "Building compressed file...\n";
-    while (!compressorObject.IsFinished);
+    while (!compressorObject.IsFinished)
+    {
+        int percentProgress = (compressorObject.BitCounter*100)/compressorObject.TotalBitCount;
+        std::cout << "\rProgress: " << percentProgress << "%";
+    }
+    std::cout << "\n";
     if (compressorObject.ExitError)
     {
         compressionThread.join();
@@ -121,7 +126,12 @@ void ManageDecompressionProcess(std::string inputFilePath, std::string outputFol
     }
 
     std::cout << "Building decompressed file...\n";
-    while (!decompressorObject.IsFinished);
+    while (!decompressorObject.IsFinished)
+    {
+        int percentProgress = (decompressorObject.BitCounter * 100) / decompressorObject.TotalBitCount;
+        std::cout << "\rProgress: " << percentProgress << "%";
+    }
+    std::cout << "\n";
     if (decompressorObject.ExitError)
     {
         decompressionThread.join();

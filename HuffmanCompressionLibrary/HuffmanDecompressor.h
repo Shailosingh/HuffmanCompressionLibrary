@@ -44,6 +44,8 @@ public:
 	bool TreeConstructed;
 	bool IsFinished;
 	bool ExitError;
+	uint64_t BitCounter;
+	uint64_t TotalBitCount;
 	std::string StatusMessage;
 
 	/// <summary>

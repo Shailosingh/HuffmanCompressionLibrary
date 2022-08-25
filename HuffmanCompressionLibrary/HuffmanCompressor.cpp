@@ -12,12 +12,17 @@ HuffmanCompressor::HuffmanCompressor()
 	BinaryCodesFound = false;
 	IsFinished = false;
 	ExitError = false;
+	BitCounter = 0;
+	TotalBitCount = 1;
 	StatusMessage = "Ready To Start!\n";
 }
 
 //Public functions-----------------------------------------------------------------------------------------------------------
 void HuffmanCompressor::BeginCompression(std::string inputFilePath, std::string outputFolderPath)
 {
+	//Clear object to defaults
+	ResetMembers();
+
 	//Get filepath versions of the parameters
 	std::filesystem::path inputPathObject = fs::path(inputFilePath);
 	std::filesystem::path outputPathObject = fs::path(outputFolderPath);
@@ -94,6 +99,8 @@ void HuffmanCompressor::ResetMembers()
 	BinaryCodesFound = false;
 	IsFinished = false;
 	ExitError = false;
+	BitCounter = 0;
+	TotalBitCount = 1;
 	StatusMessage = "Ready To Start!\n";
 }
 
@@ -134,8 +141,8 @@ void HuffmanCompressor::WriteCompressedFile(CharacterTable& table, std::string i
 
 	//Next, write every single unique character and its frequency to the output file
 	//At the same time, calculate the number of bits needed for compressed file
-	uint64_t totalBitsCount = 0;
 	uint64_t currentFrequency;
+	uint64_t tempTotalBitCount = 0;
 	for (auto const& [key, node] : table.CharacterMap)
 	{
 		//Write char and frequency to file
@@ -144,11 +151,12 @@ void HuffmanCompressor::WriteCompressedFile(CharacterTable& table, std::string i
 		outputWriter.write(reinterpret_cast<char*>(&currentFrequency), sizeof(uint64_t));
 
 		//Increment total number of bits
-		totalBitsCount += table[key].BitRepresentation.size() * table[key].GetFrequency();
+		tempTotalBitCount += table[key].BitRepresentation.size() * table[key].GetFrequency();
 	}
+	TotalBitCount = tempTotalBitCount;
 
 	//Record the total number of bits in the upcoming huffman coding
-	outputWriter.write(reinterpret_cast<const char*>(&totalBitsCount), sizeof(uint64_t));
+	outputWriter.write(reinterpret_cast<const char*>(&TotalBitCount), sizeof(uint64_t));
 
 	//Open up the input file to read bytes
 	std::ifstream fileReader;
@@ -161,7 +169,6 @@ void HuffmanCompressor::WriteCompressedFile(CharacterTable& table, std::string i
 
 	//Go through every character in the input file and write their compressed binary codes to the output
 	unsigned char currentOutputByte = 0;
-	uint64_t bitCounter = 0;
 	unsigned char currentByte;
 	while (fileReader.read(reinterpret_cast<char*>(&currentByte), sizeof(unsigned char)))
 	{
@@ -170,17 +177,17 @@ void HuffmanCompressor::WriteCompressedFile(CharacterTable& table, std::string i
 			//If the bit is true, that means a 1 should be set
 			if (bit)
 			{
-				currentOutputByte |= 1 << (bitCounter % CHAR_BIT);
+				currentOutputByte |= 1 << (BitCounter % CHAR_BIT);
 			}
 
 			//If this is the last bit of the currentOutputByte, it should be written to the file and the variable should be reset
-			if ((bitCounter % CHAR_BIT) == (CHAR_BIT - 1))
+			if ((BitCounter % CHAR_BIT) == (CHAR_BIT - 1))
 			{
 				outputWriter.write(reinterpret_cast<char*>(&currentOutputByte), sizeof(unsigned char));
 				currentOutputByte = 0;
 			}
 
-			bitCounter++;
+			BitCounter++;
 		}
 	}
 
@@ -188,7 +195,7 @@ void HuffmanCompressor::WriteCompressedFile(CharacterTable& table, std::string i
 	fileReader.close();
 
 	//If the number of bits is not an exact multiple of CHAR_BIT, that must mean the last byte hasn't been written yet and must be now
-	if (totalBitsCount % CHAR_BIT != 0)
+	if (TotalBitCount % CHAR_BIT != 0)
 	{
 		outputWriter.write(reinterpret_cast<char*>(&currentOutputByte), sizeof(unsigned char));
 	}

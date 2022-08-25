@@ -60,7 +60,7 @@ void TreeNode::RetrieveBinaryCodes(CharacterTable& table) const
 	}
 }
 
-bool TreeNode::WriteDecompressedFile(std::ifstream& fileReader, std::ofstream& outputWriter, uint64_t totalBits)
+bool TreeNode::WriteDecompressedFile(std::ifstream& fileReader, std::ofstream& outputWriter, uint64_t totalBits, uint64_t& BitCounter)
 {
 	//Go through every bit in the huffman coding and interpret which characters to print into the decompressed file
 	unsigned char currentOutputByte;
@@ -79,6 +79,9 @@ bool TreeNode::WriteDecompressedFile(std::ifstream& fileReader, std::ofstream& o
 		}
 
 		remainingBitCounter -= bitEndCounter;
+
+		//Update the decompresor's bit counter
+		BitCounter = totalBits - remainingBitCounter;
 
 		for (int currentBit = 0; currentBit < bitEndCounter; currentBit++)
 		{

@@ -59,8 +59,9 @@ public:
 	/// <param name="fileReader">Open file handle pointed to the huffman coding of the input file</param>
 	/// <param name="outputWriter">Open file handle to the new decompressed file</param>
 	/// <param name="totalBits">Total number of expected huffman coded bits</param>
+	/// <param name="BitCounter">A reference to the Decompressor's bit counter. Keep the decompressor updated</param>
 	/// <returns>True if everything is successful. False if something goes bad</returns>
-	bool WriteDecompressedFile(std::ifstream& fileReader, std::ofstream& outputWriter, uint64_t totalBits);
+	bool WriteDecompressedFile(std::ifstream& fileReader, std::ofstream& outputWriter, uint64_t totalBits, uint64_t& BitCounter);
 
 	/// <summary>
 	/// Compares this and other by frequency numbers

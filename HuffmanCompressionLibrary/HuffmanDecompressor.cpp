@@ -14,12 +14,17 @@ HuffmanDecompressor::HuffmanDecompressor()
 	TreeConstructed = false;
 	IsFinished = false;
 	ExitError = false;
+	BitCounter = 0;
+	TotalBitCount = 1;
 	StatusMessage = "Ready to go!\n";
 }
 
 //Public functions-----------------------------------------------------------------------------------------------------------
 void HuffmanDecompressor::BeginDecompression(std::string inputFilePath, std::string outputFolderPath)
 {
+	//Clear object to defaults
+	ResetMembers();
+
 	//Get filepath versions of the parameters
     fs::path inputPathObject = fs::path(inputFilePath);
 	fs::path outputPathObject = fs::path(outputFolderPath);
@@ -157,6 +162,7 @@ void HuffmanDecompressor::WriteDecompressedFile(fs::path& inputPathObject, fs::p
 	{
 		throw std::invalid_argument("Input file corrupt or catastrophic error occured!\n");
 	}
+	TotalBitCount = totalBits;
 
 	//Create full path to the output decompressed file
 	fs::path inputFileName = inputPathObject.filename();
@@ -174,7 +180,7 @@ void HuffmanDecompressor::WriteDecompressedFile(fs::path& inputPathObject, fs::p
 	}
 
 	//Use the huffman tree to finish the decompressed file
-	if (!huffmanTree->WriteDecompressedFile(fileReader, outputWriter, totalBits))
+	if (!huffmanTree->WriteDecompressedFile(fileReader, outputWriter, totalBits, BitCounter))
 	{
 		throw std::invalid_argument("Catastrophic error in reading the input file's huffman coding!\n");
 	}
@@ -191,6 +197,8 @@ void HuffmanDecompressor::ResetMembers()
 	TreeConstructed = false;
 	IsFinished = false;
 	ExitError = false;
+	BitCounter = 0;
+	TotalBitCount = 1;
 	StatusMessage = "Ready to go!\n";
 }
 
