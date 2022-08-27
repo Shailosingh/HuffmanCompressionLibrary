@@ -2,7 +2,7 @@
 #include <fstream>
 
 //Constructors---------------------------------------------------------------------------------------------------------------
-CharacterTable::CharacterTable(std::string decompressedFilePath)
+CharacterTable::CharacterTable(std::wstring decompressedFilePath)
 {
 	//Open file for reading binary
 	std::ifstream fileReader;

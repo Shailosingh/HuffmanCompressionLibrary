@@ -5,14 +5,14 @@
 #include <iostream>
 
 //Function declarations
-void ManageCompressionProcess(std::string inputFilePath, std::string outputFolderPath);
-void ManageDecompressionProcess(std::string inputFilePath, std::string outputFolderPath);
+void ManageCompressionProcess(std::wstring inputFilePath, std::wstring outputFolderPath);
+void ManageDecompressionProcess(std::wstring inputFilePath, std::wstring outputFolderPath);
 
 int main()
 {
     //Initialize paths for compression
-    std::string compression_InputFilePath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Original\\miserables.txt";
-    std::string compression_OutputFolderPath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Compressed";
+    std::wstring compression_InputFilePath = L"C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Original\\miserables.txt";
+    std::wstring compression_OutputFolderPath = L"C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Compressed";
 
     //Spin up thread that will manage compression and its status
     std::thread compressionManagementThread(ManageCompressionProcess, compression_InputFilePath, compression_OutputFolderPath);
@@ -20,8 +20,8 @@ int main()
     std::cout << "Compression Complete!\n\n";
 
     //Initialize paths for decompression
-    std::string decompression_InputFilePath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Compressed\\miserables.ShailoHuff64";
-    std::string decompression_OutputFolderPath = "C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Decompressed";
+    std::wstring decompression_InputFilePath = L"C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Compressed\\miserables.txt";
+    std::wstring decompression_OutputFolderPath = L"C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Decompressed";
 
     //Spin up thread that will manage decompression and its status
     std::thread decompressionManagementThread(ManageDecompressionProcess, decompression_InputFilePath, decompression_OutputFolderPath);
@@ -31,7 +31,7 @@ int main()
     return 0;
 }
 
-void ManageCompressionProcess(std::string inputFilePath, std::string outputFolderPath)
+void ManageCompressionProcess(std::wstring inputFilePath, std::wstring outputFolderPath)
 {
     HuffmanCompressor compressorObject;
 
@@ -43,7 +43,7 @@ void ManageCompressionProcess(std::string inputFilePath, std::string outputFolde
     if (compressorObject.ExitError)
     {
         compressionThread.join();
-        std::cout << compressorObject.StatusMessage;
+        std::wcout << compressorObject.StatusMessage;
         return;
     }
 
@@ -52,7 +52,7 @@ void ManageCompressionProcess(std::string inputFilePath, std::string outputFolde
     if (compressorObject.ExitError)
     {
         compressionThread.join();
-        std::cout << compressorObject.StatusMessage;
+        std::wcout << compressorObject.StatusMessage;
         return;
     }
 
@@ -61,7 +61,7 @@ void ManageCompressionProcess(std::string inputFilePath, std::string outputFolde
     if (compressorObject.ExitError)
     {
         compressionThread.join();
-        std::cout << compressorObject.StatusMessage;
+        std::wcout << compressorObject.StatusMessage;
         return;
     }
 
@@ -75,14 +75,14 @@ void ManageCompressionProcess(std::string inputFilePath, std::string outputFolde
     if (compressorObject.ExitError)
     {
         compressionThread.join();
-        std::cout << compressorObject.StatusMessage;
+        std::wcout << compressorObject.StatusMessage;
         return;
     }
 
     compressionThread.join();
 }
 
-void ManageDecompressionProcess(std::string inputFilePath, std::string outputFolderPath)
+void ManageDecompressionProcess(std::wstring inputFilePath, std::wstring outputFolderPath)
 {
     HuffmanDecompressor decompressorObject;
 
@@ -94,7 +94,7 @@ void ManageDecompressionProcess(std::string inputFilePath, std::string outputFol
     if (decompressorObject.ExitError)
     {
         decompressionThread.join();
-        std::cout << decompressorObject.StatusMessage;
+        std::wcout << decompressorObject.StatusMessage;
         return;
     }
 
@@ -103,7 +103,7 @@ void ManageDecompressionProcess(std::string inputFilePath, std::string outputFol
     if (decompressorObject.ExitError)
     {
         decompressionThread.join();
-        std::cout << decompressorObject.StatusMessage;
+        std::wcout << decompressorObject.StatusMessage;
         return;
     }
 
@@ -112,7 +112,7 @@ void ManageDecompressionProcess(std::string inputFilePath, std::string outputFol
     if (decompressorObject.ExitError)
     {
         decompressionThread.join();
-        std::cout << decompressorObject.StatusMessage;
+        std::wcout << decompressorObject.StatusMessage;
         return;
     }
 
@@ -121,7 +121,7 @@ void ManageDecompressionProcess(std::string inputFilePath, std::string outputFol
     if (decompressorObject.ExitError)
     {
         decompressionThread.join();
-        std::cout << decompressorObject.StatusMessage;
+        std::wcout << decompressorObject.StatusMessage;
         return;
     }
 
@@ -135,7 +135,7 @@ void ManageDecompressionProcess(std::string inputFilePath, std::string outputFol
     if (decompressorObject.ExitError)
     {
         decompressionThread.join();
-        std::cout << decompressorObject.StatusMessage;
+        std::wcout << decompressorObject.StatusMessage;
         return;
     }
 
