@@ -12,7 +12,7 @@ CharacterTable::CharacterTable(std::wstring decompressedFilePath)
 	//If file unable to open, throw an error
 	if (!fileReader)
 	{
-		throw std::invalid_argument("Unable to open input file to be compressed\n");
+		throw std::invalid_argument("Unable to open input file to be compressed");
 	}
 
 	//Read every byte of the file and record their frequencies in the map
@@ -32,13 +32,13 @@ CharacterTable::CharacterTable(std::ifstream& compressedFileReader)
 	uint64_t numberOfUniqueCharacters;
 	if (!compressedFileReader.read(reinterpret_cast<char*>(&numberOfUniqueCharacters), sizeof(uint64_t)))
 	{
-		throw std::invalid_argument("Input file corrupt or catastrophic error occured!\n");
+		throw std::invalid_argument("Input file corrupt or catastrophic error occured!");
 	}
 
 	//Ensure that the given number of unique characters is possible (not larger than 2^CHAR_BIT)
 	if (numberOfUniqueCharacters > pow(2, CHAR_BIT))
 	{
-		throw std::invalid_argument("Input file corrupt!\n");
+		throw std::invalid_argument("Input file corrupt!");
 	}
 
 	//Go through every unique character and place it in the table
@@ -48,11 +48,11 @@ CharacterTable::CharacterTable(std::ifstream& compressedFileReader)
 	{
 		if (!compressedFileReader.read(reinterpret_cast<char*>(&currentChar), sizeof(unsigned char)))
 		{
-			throw std::invalid_argument("Input file corrupt or catastrophic error occured!\n");
+			throw std::invalid_argument("Input file corrupt or catastrophic error occured!");
 		}
 		if (!compressedFileReader.read(reinterpret_cast<char*>(&currentFrequency), sizeof(uint64_t)))
 		{
-			throw std::invalid_argument("Input file corrupt or catastrophic error occured!\n");
+			throw std::invalid_argument("Input file corrupt or catastrophic error occured!");
 		}
 
 		CharacterMap[currentChar] = CharacterTableNode(currentFrequency);
