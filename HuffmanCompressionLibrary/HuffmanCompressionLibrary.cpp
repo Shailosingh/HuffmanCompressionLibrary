@@ -20,7 +20,7 @@ int main()
     std::cout << "Compression Complete!\n\n";
 
     //Initialize paths for decompression
-    std::wstring decompression_InputFilePath = L"C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Compressed\\miserables.txt";
+    std::wstring decompression_InputFilePath = L"C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Compressed\\miserables.ShailoHuff64";
     std::wstring decompression_OutputFolderPath = L"C:\\Users\\compu\\Desktop\\Random Docs\\HuffmanCompression Library Test\\Decompressed";
 
     //Spin up thread that will manage decompression and its status
