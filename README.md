@@ -3,7 +3,7 @@ The Huffman Compression Library is a C++ library which offers a simple way to co
 
 ## Requirements
 - Currently requires Windows. May be changed at a later date to be more portable
-- ISO C++17 Standard Compiler (library tested using Microsoft Visual C++)
+- At least, ISO C++17 Standard Compiler (library tested using Microsoft Visual C++)
 
 ## Quick Start
 The following is a VERY basic explanation of how to quickly compress or decompress a file in a single thread.
